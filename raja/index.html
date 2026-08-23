@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFS Maze Solver</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pathfinder <span>BFS</span></h1>
+            <p>Visualizing Breadth-First Search Algorithm</p>
+        </header>
+        
+        <div class="controls">
+            <button id="btn-generate">Random Walls</button>
+            <button id="btn-clear">Clear Grid</button>
+            <button id="btn-solve" class="primary">Solve BFS</button>
+        </div>
+
+        <div id="grid" class="grid"></div>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="cell start"></div> Start Node</div>
+            <div class="legend-item"><div class="cell target"></div> Target Node</div>
+            <div class="legend-item"><div class="cell wall"></div> Wall Node</div>
+            <div class="legend-item"><div class="cell visited"></div> Visited Node</div>
+            <div class="legend-item"><div class="cell path"></div> Shortest Path</div>
+        </div>
+        
+        <p class="hint">Tip: Click and drag to draw walls or move Start/Target nodes!</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

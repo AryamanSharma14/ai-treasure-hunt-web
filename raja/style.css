@@ -1,0 +1,199 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f172a;
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header span {
+    color: #fbbf24;
+    -webkit-text-fill-color: initial;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+button.primary {
+    background: linear-gradient(135deg, #3b82f6, #4f46e5);
+    border: none;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+button.primary:hover {
+    background: linear-gradient(135deg, #2563eb, #4338ca);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.grid {
+    display: grid;
+    gap: 2px;
+    background-color: #334155;
+    border: 2px solid #334155;
+    border-radius: 8px;
+    overflow: hidden;
+    user-select: none;
+}
+
+.cell {
+    width: 28px;
+    height: 28px;
+    background-color: #1e293b;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background-color: #334155;
+}
+
+.cell.wall {
+    background-color: #0f172a;
+    animation: wallPop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.cell.start {
+    background-color: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+    cursor: default;
+    z-index: 10;
+}
+
+.cell.target {
+    background-color: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+    cursor: default;
+    z-index: 10;
+}
+
+.cell.visited {
+    background-color: rgba(56, 189, 248, 0.4);
+    animation: visitedAnimation 1s ease-out forwards;
+}
+
+.cell.path {
+    background-color: #fbbf24;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+    animation: pathAnimation 0.5s ease-out forwards;
+}
+
+.legend {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+.legend-item .cell {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    cursor: default;
+}
+.legend-item .cell:hover {
+    background-color: inherit;
+}
+.legend-item .cell.wall:hover { background-color: #0f172a;}
+.legend-item .cell.start:hover { background-color: #10b981;}
+.legend-item .cell.target:hover { background-color: #ef4444;}
+.legend-item .cell.visited:hover { background-color: rgba(56, 189, 248, 0.4);}
+.legend-item .cell.path:hover { background-color: #fbbf24;}
+
+.hint {
+    color: #64748b;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: -0.5rem;
+}
+
+@keyframes wallPop {
+    0% { transform: scale(0.3); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes visitedAnimation {
+    0% { transform: scale(0.3); background-color: rgba(94, 234, 212, 0.8); border-radius: 50%; }
+    50% { background-color: rgba(56, 189, 248, 0.6); }
+    100% { transform: scale(1); background-color: rgba(56, 189, 248, 0.3); border-radius: 0; }
+}
+
+@keyframes pathAnimation {
+    0% { transform: scale(0.3); background-color: #f59e0b; border-radius: 50%; }
+    50% { transform: scale(1.2); background-color: #fbbf24; }
+    100% { transform: scale(1); background-color: #fbbf24; border-radius: 3px; }
+}
